@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SkipLink } from "@/components/layout/skip-link";
 
 import "@/styles/globals.css";
 
@@ -44,7 +47,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${dmSans.variable} ${geistMono.variable}`}
       data-scroll-behavior="smooth"
     >
-      <body className="surface-dark text-base antialiased">{children}</body>
+      <body className="surface-dark text-base antialiased">
+        <SkipLink />
+        <SiteHeader />
+        <main id="main" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }
