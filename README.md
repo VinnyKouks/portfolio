@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Victor Okoukoni, portfolio
 
-## Getting Started
+Source code for the new portfolio of Victor Okoukoni, a frontend engineer in Lagos, Nigeria. It goes live at [victorokoukoni.vercel.app](https://victorokoukoni.vercel.app) at launch.
 
-First, run the development server:
+> Work in progress. This README will be completed before launch.
+
+## Tech stack
+
+- [Next.js 16](https://nextjs.org) (App Router) and React 19
+- TypeScript in strict mode
+- Tailwind CSS v4
+- Hosted on [Vercel](https://vercel.com)
+
+## Getting started
+
+You need Node.js 26 and pnpm 12.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command             | What it does                                |
+| ------------------- | ------------------------------------------- |
+| `pnpm dev`          | Start the development server                |
+| `pnpm build`        | Build for production                        |
+| `pnpm start`        | Serve the production build                  |
+| `pnpm lint`         | Lint with ESLint                            |
+| `pnpm lint:fix`     | Lint and fix what ESLint can fix by itself  |
+| `pnpm typecheck`    | Check TypeScript types                      |
+| `pnpm format`       | Format all files with Prettier              |
+| `pnpm format:check` | Check formatting without changing files     |
+| `pnpm check`        | Lint, type-check and format check in one go |
 
-## Learn More
+## Workflow
 
-To learn more about Next.js, take a look at the following resources:
+- One short-lived branch and pull request per section, squash-merged into `main`
+- Commit messages follow [Conventional Commits](https://www.conventionalcommits.org), checked by commitlint
+- Staged files are linted and formatted before each commit, by Husky and lint-staged
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The code is released under the [MIT License](LICENSE).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The written content, photos and other media on the site are not covered by that license. They are © Victor Okoukoni, all rights reserved.
