@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
@@ -11,6 +10,18 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
+  },
+
+  async redirects() {
+    return [
+      {
+        // A short, stable link to share. If the file name ever changes,
+        // only this line does.
+        source: "/cv",
+        destination: "/victor-okoukoni-cv.pdf",
+        permanent: false,
+      },
+    ];
   },
 };
 
