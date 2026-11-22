@@ -14,9 +14,20 @@ test("the skip link is the first thing keyboard focus reaches", async ({
   await expect(page.locator("main")).toBeFocused();
 });
 
-test("Get in touch jumps to the contact details", async ({ page }) => {
+test("Get in touch jumps to the contact details", async ({
+  page,
+  isMobile,
+}) => {
   await page.goto("/work");
-  await page.getByRole("link", { name: "Get in touch" }).click();
+  const getInTouch = page.locator("header").getByText("Get in touch");
+
+  if (isMobile) {
+    // Hidden on phones: contact is in the menu panel and the footer
+    await expect(getInTouch).toBeHidden();
+    return;
+  }
+
+  await getInTouch.click();
 
   await expect(page).toHaveURL(/#contact$/);
   await expect(page.locator("#contact")).toBeInViewport();

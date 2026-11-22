@@ -5,4 +5,8 @@ export const site = {
   email: "victorokoukoni@gmail.com",
   location: "Lagos, Nigeria",
   availability: "Open to frontend roles and freelance projects",
+  socials: {
+    linkedin: "https://www.linkedin.com/in/victor-okoukoni/",
+    github: "https://github.com/VinnyKouks",
+  },
 } as const;

@@ -8,9 +8,10 @@ export function SiteHeader() {
       <Link href="/" className="col-start-2 font-medium">
         {site.name}
       </Link>
+      {/* Hidden on phones: there, contact lives in the menu panel and the footer */}
       <a
         href="#contact"
-        className="justify-self-end text-sm font-medium underline-offset-4 hover:underline"
+        className="hidden justify-self-end text-sm font-medium underline-offset-4 hover:underline sm:block"
       >
         Get in touch
       </a>
