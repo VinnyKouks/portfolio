@@ -84,11 +84,30 @@
   color-scheme: light;
 }
 
+/* The footer's orange field. Every pairing on orange uses ink: the muted
+   greys and bone don't pass contrast here, so there is no muted shade. */
+@utility surface-orange {
+  --surface-muted: var(--color-ink);
+  --surface-accent: var(--color-ink);
+  background-color: var(--color-orange);
+  color: var(--color-ink);
+  color-scheme: light;
+
+  /* The default orange text selection would vanish on orange */
+  & ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-orange);
+  }
+}
+
 @layer base {
   html {
     /* Keep space for the scrollbar even while the open menu stops scrolling,
        so the page doesn't jump sideways */
     scrollbar-gutter: stable;
+    /* That space shows the page background while the scrollbar is hidden,
+       so make it ink rather than the browser's default white */
+    background-color: var(--color-ink);
   }
 
   body {
