@@ -62,7 +62,7 @@ export async function SiteFooter() {
           data-testid="footer-name"
           className="@container mt-section"
         >
-          <p className="text-[length:calc(100cqi/4.22)] leading-[0.85] font-[1000] tracking-[-0.04em] sm:text-[length:calc(100cqi/7.05)]">
+          <p className="text-[calc(100cqi/4.22)] leading-[0.85] font-[1000] tracking-[-0.04em] sm:text-[calc(100cqi/7.05)]">
             <span className="block sm:inline">{firstName}</span>{" "}
             <span className="block sm:inline">{lastName}</span>
           </p>
