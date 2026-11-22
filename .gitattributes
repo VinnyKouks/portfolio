@@ -1,0 +1,15 @@
+# Store and check out text files with LF line endings on every OS
+* text=auto eol=lf
+
+# Binary files: never convert
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.pdf binary
+*.woff2 binary
+
+# Collapse the lockfile in GitHub pull request diffs
+pnpm-lock.yaml linguist-generated=true
