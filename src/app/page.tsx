@@ -6,7 +6,7 @@
  */
 export default function Home() {
   return (
-    <main className="px-gutter py-section">
+    <div className="px-gutter py-section">
       <div className="mx-auto max-w-content space-y-16">
         <header className="space-y-6">
           <p className="font-mono text-label text-muted uppercase">
@@ -104,6 +104,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
