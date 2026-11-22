@@ -13,6 +13,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "check": "pnpm lint && pnpm typecheck && pnpm format:check && pnpm test",
     "prepare": "husky"
   },
@@ -22,8 +23,10 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
+    "@playwright/test": "^1.65.1",
     "@tailwindcss/turbopack": "4.3.3",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^8.0.0",

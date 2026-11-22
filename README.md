@@ -24,19 +24,20 @@ Then open http://localhost:3000.
 
 ## Scripts
 
-| Command             | What it does                                  |
-| ------------------- | --------------------------------------------- |
-| `pnpm dev`          | Start the development server                  |
-| `pnpm build`        | Build for production                          |
-| `pnpm start`        | Serve the production build                    |
-| `pnpm lint`         | Lint with ESLint                              |
-| `pnpm lint:fix`     | Lint and fix what ESLint can fix by itself    |
-| `pnpm typecheck`    | Check TypeScript types                        |
-| `pnpm format`       | Format all files with Prettier                |
-| `pnpm format:check` | Check formatting without changing files       |
-| `pnpm test`         | Run the unit tests once                       |
-| `pnpm test:watch`   | Re-run unit tests as files change             |
-| `pnpm check`        | Lint, type-check, format check and unit tests |
+| Command             | What it does                                       |
+| ------------------- | -------------------------------------------------- |
+| `pnpm dev`          | Start the development server                       |
+| `pnpm build`        | Build for production                               |
+| `pnpm start`        | Serve the production build                         |
+| `pnpm lint`         | Lint with ESLint                                   |
+| `pnpm lint:fix`     | Lint and fix what ESLint can fix by itself         |
+| `pnpm typecheck`    | Check TypeScript types                             |
+| `pnpm format`       | Format all files with Prettier                     |
+| `pnpm format:check` | Check formatting without changing files            |
+| `pnpm test`         | Run the unit tests once                            |
+| `pnpm test:watch`   | Re-run unit tests as files change                  |
+| `pnpm test:e2e`     | Build the site and run the page tests in a browser |
+| `pnpm check`        | Lint, type-check, format check and unit tests      |
 
 ## Workflow
 
