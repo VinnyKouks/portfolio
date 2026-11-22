@@ -1,0 +1,51 @@
+# Dependabot opens pull requests to keep packages and GitHub Actions up to date.
+version: 2
+
+updates:
+  # Packages in package.json. Dependabot's "npm" ecosystem also covers pnpm.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Africa/Lagos
+    # Only suggest versions that have been public for 3 days, so a broken
+    # or malicious release has time to be caught and pulled.
+    cooldown:
+      default-days: 3
+    # One pull request a week for all minor and patch updates.
+    # Major updates still come one at a time.
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    commit-message:
+      prefix: chore
+      include: scope
+    ignore:
+      # Stay on ESLint 9 until eslint-config-next supports ESLint 10.
+      - dependency-name: eslint
+        update-types: ["version-update:semver-major"]
+      # Stay on TypeScript 5 for now: typescript-eslint doesn't support TypeScript 7 yet.
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+      # Keep the Node types on the Node version we run (26).
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+
+  # The actions used in .github/workflows.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Africa/Lagos
+    groups:
+      actions:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: ci
