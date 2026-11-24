@@ -44,6 +44,7 @@
   /* Layout */
   --spacing-gutter: clamp(1rem, 0.667rem + 1.481vw, 2rem);
   --spacing-section: clamp(4rem, 2.667rem + 5.926vw, 8rem);
+  --spacing-header: 4rem; /* the header's fixed height */
   /* Room at the bottom of every page, so the fixed navigation bar never
      covers the end of the content (including phones' home-bar area) */
   --spacing-nav-clearance: calc(6rem + env(safe-area-inset-bottom));
