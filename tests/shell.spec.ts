@@ -42,3 +42,15 @@ test("/cv redirects to the CV file", async ({ request }) => {
   expect(file.ok()).toBe(true);
   expect(file.headers()["content-type"]).toContain("application/pdf");
 });
+
+test("buttons show the hand cursor", async ({ page }) => {
+  await page.goto("/");
+  const buttons = [
+    page.getByRole("button", { name: "Menu" }),
+    page.getByRole("button", { name: "Copy email address" }),
+  ];
+
+  for (const button of buttons) {
+    await expect(button).toHaveCSS("cursor", "pointer");
+  }
+});

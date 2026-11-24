@@ -127,6 +127,15 @@
     color: var(--color-ink);
   }
 
+  /* Anything clickable shows the hand cursor with a mouse. Links already do;
+     Tailwind's reset leaves buttons with the plain arrow. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  label[for] {
+    cursor: pointer;
+  }
+
   /* Smooth scrolling for in-page links like "Get in touch", unless the
      visitor has asked their device for less motion */
   @media (prefers-reduced-motion: no-preference) {
