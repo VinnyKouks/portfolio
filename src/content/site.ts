@@ -2,6 +2,8 @@
 export const site = {
   name: "Victor Okoukoni",
   role: "Frontend engineer",
+  headline:
+    "Frontend engineer building interfaces that are precise and beautiful.",
   email: "victorokoukoni@gmail.com",
   location: "Lagos, Nigeria",
   availability: "Open to frontend roles and freelance projects",

@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  AnimatePresence,
-  domAnimation,
-  LazyMotion,
-  m,
-  useReducedMotion,
-} from "motion/react";
+import { AnimatePresence, LazyMotion, m, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
@@ -16,6 +10,10 @@ import { site } from "@/content/site";
 
 const FOCUSABLE = "a[href], button:not([disabled])";
 const EASE_OUT_SOFT = [0.22, 1, 0.36, 1] as const; // same curve as --ease-out-soft
+
+// Load the animation features separately, after the page (see motion-features.ts)
+const loadMotionFeatures = () =>
+  import("./motion-features").then((module) => module.default);
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -88,7 +86,7 @@ export function BottomNav() {
     : { duration: 0.45, ease: EASE_OUT_SOFT };
 
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion features={loadMotionFeatures} strict>
       <div ref={rootRef}>
         <AnimatePresence>
           {open && (
