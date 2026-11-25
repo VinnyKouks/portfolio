@@ -1,23 +1,36 @@
 @import "tailwindcss";
 
 /*
- * Design tokens. Colours are in OKLCH, with the hex value in each comment.
- * The full table, with what each colour is for, is in the requirements doc.
+ * Colour tokens come in two layers.
  *
+ * 1. Primitives: the raw palette, named for what each colour is. They live
+ *    in :root below, outside Tailwind's theme, so there are no classes for
+ *    them: bg-orange or text-ink won't work. Colours are in OKLCH, with the
+ *    hex value in each comment; the full table is in the requirements doc.
+ *
+ * 2. Semantic tokens: named for the job a colour does (background, accent,
+ *    action...). These are the only colour classes, such as bg-action or
+ *    text-muted. Each one points at a primitive, and the surface classes
+ *    further down choose which, so if a palette colour ever changes, it
+ *    changes in one place.
+ */
+:root {
+  --palette-ink: oklch(17.7% 0.002 106.6); /* #111110 */
+  --palette-raised-ink: oklch(22.1% 0.004 106.7); /* #1B1B19 */
+  --palette-muted-on-ink: oklch(67.4% 0.012 84.6); /* #9A968E */
+  --palette-bone: oklch(94% 0.01 87.5); /* #EEEBE4 */
+  --palette-raised-bone: oklch(90.1% 0.013 86.8); /* #E2DED5 */
+  --palette-muted-on-bone: oklch(46.5% 0.012 87.5); /* #5C5952 */
+  --palette-orange: oklch(61.5% 0.212 34.1); /* #E83E12 */
+  --palette-deep-orange: oklch(51.3% 0.182 34.4); /* #B82B00 */
+}
+
+/*
  * Tailwind's own colours, type sizes and fonts are cleared first, so only
- * the tokens below exist. A class like bg-zinc-500 simply won't work.
+ * our tokens exist. A class like bg-zinc-500 simply won't work.
  */
 @theme {
   --color-*: initial;
-  --color-ink: oklch(17.7% 0.002 106.6); /* #111110 */
-  --color-raised-ink: oklch(22.1% 0.004 106.7); /* #1B1B19 */
-  --color-muted-on-ink: oklch(67.4% 0.012 84.6); /* #9A968E */
-  --color-bone: oklch(94% 0.01 87.5); /* #EEEBE4 */
-  --color-raised-bone: oklch(90.1% 0.013 86.8); /* #E2DED5 */
-  --color-muted-on-bone: oklch(46.5% 0.012 87.5); /* #5C5952 */
-  --color-orange: oklch(61.5% 0.212 34.1); /* #E83E12 */
-  --color-deep-orange: oklch(51.3% 0.182 34.4); /* #B82B00 */
-
   --font-*: initial;
 
   /* Type scale. Sizes grow smoothly from 360px-wide phones to 1440px screens. */
@@ -56,59 +69,83 @@
 }
 
 /* Tokens that point at other variables: the fonts from next/font, and the
-   surface-aware colours set by surface-dark and surface-light below. */
+   semantic colours. Each colour follows the surface it's used on. */
 @theme inline {
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --color-muted: var(--surface-muted);
-  --color-accent: var(--surface-accent);
+
+  --color-background: var(--surface-background); /* the surface itself */
+  --color-raised: var(--surface-raised); /* cards and bars on it */
+  --color-foreground: var(--surface-foreground); /* main text */
+  --color-muted: var(--surface-muted); /* secondary text */
+  --color-accent: var(--surface-accent); /* links, markers, focus ring */
+  --color-action: var(--surface-action); /* button backgrounds */
+  --color-action-foreground: var(--surface-action-foreground); /* button text */
+  /* Faint dividing lines and edges: the main text colour at 10% */
+  --color-hairline: color-mix(
+    in oklab,
+    var(--surface-foreground) 10%,
+    transparent
+  );
+  --color-scrim: var(--palette-ink); /* dims the page behind the open menu */
 }
 
 /*
- * Surfaces. A section sets its colours with one class. Inside it,
- * text-muted, text-accent and the focus ring switch to the shade that
- * passes contrast on that background.
+ * Surfaces. A section sets its colours with one class, and every semantic
+ * colour inside it switches to the shade that passes contrast on that
+ * background (the contrast rules are in the requirements doc). The whole
+ * page starts as surface-dark.
  */
 @utility surface-dark {
-  --surface-muted: var(--color-muted-on-ink);
-  --surface-accent: var(--color-orange);
-  background-color: var(--color-ink);
-  color: var(--color-bone);
+  --surface-background: var(--palette-ink);
+  --surface-raised: var(--palette-raised-ink);
+  --surface-foreground: var(--palette-bone);
+  --surface-muted: var(--palette-muted-on-ink);
+  --surface-accent: var(--palette-orange);
+  --surface-action: var(--palette-orange);
+  --surface-action-foreground: var(--palette-ink);
+  background-color: var(--surface-background);
+  color: var(--surface-foreground);
   color-scheme: dark;
 }
 
 @utility surface-light {
-  --surface-muted: var(--color-muted-on-bone);
-  --surface-accent: var(--color-deep-orange);
-  background-color: var(--color-bone);
-  color: var(--color-ink);
+  --surface-background: var(--palette-bone);
+  --surface-raised: var(--palette-raised-bone);
+  --surface-foreground: var(--palette-ink);
+  --surface-muted: var(--palette-muted-on-bone);
+  --surface-accent: var(--palette-deep-orange);
+  --surface-action: var(--palette-deep-orange);
+  --surface-action-foreground: var(--palette-bone);
+  background-color: var(--surface-background);
+  color: var(--surface-foreground);
   color-scheme: light;
 }
 
 /* The footer's orange field. Every pairing on orange uses ink: the muted
-   greys and bone don't pass contrast here, so there is no muted shade. */
+   greys and bone don't pass contrast here, so there is no muted shade and
+   no raised level, and buttons are ink with bone text. */
 @utility surface-orange {
-  --surface-muted: var(--color-ink);
-  --surface-accent: var(--color-ink);
-  background-color: var(--color-orange);
-  color: var(--color-ink);
+  --surface-background: var(--palette-orange);
+  --surface-raised: var(--palette-orange);
+  --surface-foreground: var(--palette-ink);
+  --surface-muted: var(--palette-ink);
+  --surface-accent: var(--palette-ink);
+  --surface-action: var(--palette-ink);
+  --surface-action-foreground: var(--palette-bone);
+  background-color: var(--surface-background);
+  color: var(--surface-foreground);
   color-scheme: light;
-
-  /* The default orange text selection would vanish on orange */
-  & ::selection {
-    background-color: var(--color-ink);
-    color: var(--color-orange);
-  }
 }
 
 @layer base {
   html {
+    /* The whole page starts dark. This also colours the scrollbar's space
+       while the open menu hides the scrollbar. */
+    @apply surface-dark;
     /* Keep space for the scrollbar even while the open menu stops scrolling,
        so the page doesn't jump sideways */
     scrollbar-gutter: stable;
-    /* That space shows the page background while the scrollbar is hidden,
-       so make it ink rather than the browser's default white */
-    background-color: var(--color-ink);
   }
 
   body {
@@ -122,9 +159,20 @@
     outline-offset: 3px;
   }
 
+  /* Selected text uses the surface's button colours, so it shows on every
+     surface (orange on dark, deep orange on light, ink on orange) */
   ::selection {
-    background-color: var(--color-orange);
-    color: var(--color-ink);
+    background-color: var(--surface-action);
+    color: var(--surface-action-foreground);
+  }
+
+  /* Anything clickable shows the hand cursor with a mouse. Links already do;
+     Tailwind's reset leaves buttons with the plain arrow. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  label[for] {
+    cursor: pointer;
   }
 
   /* Smooth scrolling for in-page links like "Get in touch", unless the

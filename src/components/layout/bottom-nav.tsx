@@ -93,7 +93,7 @@ export function BottomNav() {
             <m.div
               key="backdrop"
               aria-hidden="true"
-              className="fixed inset-0 z-40 bg-ink/70"
+              className="fixed inset-0 z-40 bg-scrim/70"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -108,7 +108,7 @@ export function BottomNav() {
           aria-label="Main"
           className="fixed inset-x-0 bottom-0 z-50 px-gutter pb-[max(1rem,env(safe-area-inset-bottom))]"
         >
-          <div className="mx-auto max-w-md overflow-hidden rounded-3xl border border-bone/10 bg-raised-ink">
+          <div className="mx-auto max-w-md overflow-hidden rounded-3xl border border-hairline bg-raised">
             <AnimatePresence initial={false}>
               {open && (
                 <m.div
@@ -135,7 +135,7 @@ export function BottomNav() {
                               {isCurrent && (
                                 <span
                                   aria-hidden="true"
-                                  className="size-2 rounded-full bg-orange"
+                                  className="size-2 rounded-full bg-accent"
                                 />
                               )}
                             </Link>
@@ -184,7 +184,7 @@ export function BottomNav() {
                       <p className="text-sm text-muted">{site.availability}</p>
                       <a
                         href={`mailto:${site.email}`}
-                        className="rounded-full bg-orange px-5 py-2.5 font-medium text-ink"
+                        className="rounded-full bg-action px-5 py-2.5 font-medium text-action-foreground"
                       >
                         Email me
                       </a>
