@@ -32,7 +32,7 @@ export async function SiteFooter() {
             <p className="max-w-prose text-lg">{site.callToAction.line}</p>
             <a
               href={`mailto:${site.email}`}
-              className="inline-flex rounded-full bg-ink px-6 py-3 font-medium text-bone"
+              className="inline-flex rounded-full bg-action px-6 py-3 font-medium text-action-foreground"
             >
               Email me
             </a>

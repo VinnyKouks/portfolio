@@ -51,7 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${dmSans.variable} ${geistMono.variable}`}
       data-scroll-behavior="smooth"
     >
-      <body className="surface-dark text-base antialiased">
+      <body className="text-base antialiased">
         <SkipLink />
         <SiteHeader />
         <main id="main" tabIndex={-1} className="outline-none">

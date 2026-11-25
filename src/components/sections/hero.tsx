@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative isolate flex min-h-[calc(100svh-var(--spacing-header))] flex-col items-center justify-end overflow-hidden bg-ink px-gutter pb-nav-clearance sm:min-h-[max(calc(100svh-var(--spacing-header)),36rem)]"
+      className="relative isolate flex min-h-[calc(100svh-var(--spacing-header))] flex-col items-center justify-end overflow-hidden bg-background px-gutter pb-nav-clearance sm:min-h-[max(calc(100svh-var(--spacing-header)),36rem)]"
     >
       {/*
         The portrait. On phones it spans the full width, nudged up slightly so
